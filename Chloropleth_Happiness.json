@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"World Happiness Index 2021",
+  "fontSize":15},
+  "width": 400,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githubusercontent.com/szha0171/fit-3179-assignment-2/main/global.topojson",
+    "format": {"type": "topojson", "feature": "global.geo"}
+  },
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.name",
+          "as": "note"
+        }
+      ],
+      "mark": {"type": "geoshape", "fill": "darkgray", "stroke": "black","strokeWidth":1},
+      "encoding": {"tooltip": {"field": "note"}}
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/tcor0005/FIT3179Assignment2/main/world-happiness-report-2021.csv"
+            },
+            "key": "Country name",
+            "fields": ["Ladder score"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "black","strokeWidth":0.2},
+      "encoding": {
+        "color": {
+          "field": "Ladder score",
+          "title":"Happiness Index Score",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [4,5,6,7,8]
+          }
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "Country"},
+          {"field": "Ladder score", "type": "quantitative","title":"Happiness Index Score"}
+        ]
+      }
+    }
+  ]
+}
