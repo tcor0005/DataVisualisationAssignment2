@@ -1,0 +1,23 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A scatterplot showing body mass and flipper lengths of penguins.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/world-happiness-report-2021.csv"
+    },
+    "mark": "circle",
+    "encoding": {
+      "x": {
+        "field": "Healthy life expectancy",
+        "type": "quantitative",
+        "scale": {"zero": false}
+      },
+      "y": {
+        "field": "Logged GDP per capita",
+        "type": "quantitative",
+        "scale": {"zero": false}
+      },
+      "color": {"field": "Regional indicator", "type": "nominal"},
+      "size": {"field": "Ladder score", "type": "quantitative"}
+    }
+  }
+  
