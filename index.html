@@ -1,104 +1,147 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-  <title>World Happiness Report 2021</title>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-
-  <!-- Import pure.css -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
-
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
-
-
+    <title>World Happiness</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="vega_lite_vis.js"></script>
 </head>
+
 <body>
-
- <div class="page">
-
-   <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h1>World Happiness Report</h1>
-        <p>This page demonstrates how you can use pure.css grid for your layout.</p>
-      </div>
-    </div>
-  <!-- end pure grid group -->
-
-    <!-- pure grid group -->
-    <div class="pure-g">
-        <div class="pure-u-1-3">
-          <div class="description description-left">
-            <h2>World Happiness Index 2021</h2>
-            <p>The first column is used for description while the next two columns are merged and used for visualisation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
-          </div>
+    <header class="page-header">
+        <div class="column">
+          <h1 class="collection-title" style="padding-left: 35%; padding-top: 7%; color: #000000; font-size: 60px;" >Global Happiness in 2021</h1>
+          <hr>
         </div>
-        <div class="pure-u-2-3">
-          <div id="vis1" class="vis-container"></div>
-        </div>
-    </div>
-    <!-- end pure grid group -->
+    </header>
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-        <div class="pure-u-2-3">
-          <div id="vis2"  class="vis-container"></div>
+    <article>
+        <div class="page-body" >
+            <h3 class="collection-title" style="color: #092215; padding-left: 20px;text-align:center;">Introduction: The World Happiness Report</h3>
+            <div class="column-list"> 
+              <p class="bodytext; column" style="width: 30%; text-align: center; font-family: 'Century Gothic'; font-size: 18px;">The World Happiness Report is a publication of the United Nations Sustainable Development Solutions Network. It contains articles and rankings of national happiness, based on respondent ratings of their own lives,[1] which the report also correlates with various (quality of) life factors. As of March 2021, Finland had been ranked the happiest country in the world four times in a row.</p>
+              <p class="bodytext; column" style="width: 30%; text-align: center; font-family: 'Century Gothic';font-size: 18px;">The World Happiness Report is a landmark survey of the state of global happiness that ranks 156 countries by how happy their citizens perceive themselves to be. The World Happiness Report ranks cities around the world by their subjective well-being and digs more deeply into how the social, urban and natural environments combine to affect our happiness.</p>
+              <p class="bodytext; column" style="width: 30%; text-align: center; font-family: 'Century Gothic';font-size: 18px;">Six factors are used to explain happiness, and four of these measure different aspects of the social environment: having someone to count on, having a sense of freedom to make key life decisions, generosity, and trust. Other factors include GDP, perceptions of corruption, positive affect, and negative affect.</p>
+            </div>
+
+            <hr>
+                <div class="column-list">
+                <div style="width:25%; padding: 20px; padding-top: 0%;" class="column" >
+                  <h3 class="collection-title" style=" padding-top: 0%; color: #092215;">Global Happiness</h3>
+                    <p class="bodytext"> <strong>"Happiness is the feeling that power increases — that resistance is being overcome" - Friedrich Nietzsche</strong></p>
+                    <p class="bodytext">Improving the living standards and quality of life of society is one of the primary goals of most modern industrialised economies. However, in taking a global view, we can constrast and compare the quality of living for individuals in different societies around the world.</p>
+                    <p class="bodytext">The adjacent chloropleth map investigates the world based on the the "Happiness" Score from The World Happiness Report Dataset. The score is a composite of many variables- including Social Support, Freedom, Generosity, Corruption, Positive Affect and Negative Affect.</p>
+                        </div>
+                    <div id="vis1"  class="column" style="width:75%; padding-top: 50px;">
+                    </div>
+                </div>
+            </div>
+            <p class="bodytext" style="text-align: center; font-size: 15px; opacity: 0.5; ">* Data is not available for countries in grey.</p>
+            <h3 class="collection-title" style="color: #092215; padding-top: 50px; padding-left: 45%;text-align:center;">Key Insights</h3>
+            <div class="column-list">
+              <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Due to the COVID pandemic, the happiness reported by all countries is significantly lower than expected. </strong></p></div>
+              <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Northern Europe and Anglophone countries reported the highest in happiness in 2021, with scores reported at around 7 or higher.</strong></p></div>
+              <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Sub-Saharan Africa is the geographic region scored the lowest in happiness. However, Sub-Saharan Africa is also the region with the worst coverage the World Happiness Report for 2021. </strong></p></div>
+            </div>
+            
+        <h3 class="collection-title" style="padding-left: 20px; padding-top: 0%; color: #092215;">Happiness VS Life Expectancy</h3>
+            <div class="column-list">
+            <div id="scatterplot1"  class="column" style="width:70%; height:600"></div>
+            <div style="padding-left: 20px; width:30%" class="column">
+              <p class="bodytext"><strong> Adjecent Interactive Scatterplot investigates the relationships between Happiness and Life Expectancy.  GDP, Life Expectancy, Country, Region, and Year.</strong></p>
+              <p class="bodytext"><strong> Variables to explore include Happiness, Life Expectancy, GDP, Country, Region, and Year.</strong></p>
+              <p class="bodytext">By using the filters and sliders at the bottom of the scatterplot, you can filter your view of the data.</p>
+              <p class="bodytext">Give it a try!</p>
+            </div>
         </div>
-        <div class="pure-u-1-3">
-          <div class="description description-right">
-            <h2>Global GDP Per Capita</h2>
-            <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
-          </div>
+        <h3 class="collection-title" style="color: #092215; padding-top: 50px; padding-left: 45%;text-align:center;">Key Insights</h3>
+        <div class="column-list">
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Low-income and middle-income countries have experienced a significant increase in average GDP, life expectancy and happiness in the last 15 years.</strong></p></div>
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Energy production of all types accounts for 72% of all emissions.</strong></p></div>
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Energy production of all types accounts for 72% of all emissions.</strong></p></div>
         </div>
+        
+        <hr>
+        <h3 class="collection-title" style="padding-left: 20px; padding-top: 0%; color: #092215;">How GDP relates to Happiness Globally</h3>
+            <div class="column-list">
+            <div style="width:30%" class="column">
+                <h3 class="quote_text"> "People are now recognizing that 'progress' should be about increasing human happiness and well-being, not just growing the economy." - United Nations</h3>
+                <p class="bodytext">According to the U.N. General Assembly, happiness is considered a fundamental human goal and the best ways to achieve that include giving, appreciating, and exercising what is around you.</p>
+                <p class="bodytext">The adjacent chloropleth map investigated regions of the world based on the "Logged GDP Per Capita" Score from The World Happiness Report Dataset.</p>
+                <p class="bodytext">As to be expected, we see that the industrialised countries have a higher score, while developing countries tend to have lower scores.</p>
+                <p class="bodytext"> Note: "Log GDP Per Capita" is not expressed in dollars or any other monetary denomination, but is a rank between countries.</p>
+            </div>
+            <div id="vis2"  class="column" style="padding-left: 20px; width:70%; height:500"></div>
+        </div>
+        <p class="bodytext" style="text-align: center; font-size: 15px; opacity: 0.5; ">* Data is not available for countries in grey.</p>
+        <h3 class="collection-title" style="color: #092215; padding-top: 50px; padding-left: 45%;text-align:center;">Key Insights</h3>
+        <div class="column-list">
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Wealth disparities continue to persist between rich nations which are typically situated in temperate regions, and poor nations which are typically situated in hot regions.</strong></p></div>
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>COVID is estimated to have pushed 50-100M people below the line of absolute poverty- raising the number of people around the world living in extreme poverty to ~150M people.</strong></p></div>
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>The long term trend of economic growth globally is still an extremely positive force for raising living standards and human happiness. In 2021, the average income globally has reached $18,000 USD PPP.  </strong></p></div>
+        </div>
+        
+        <h3 class="collection-title" style="padding-left: 20px; padding-top: 0%; color: #092215;">How GDP relates to Life Expectancy Globally</h3>
+            <div class="column-list">
+            <div id="scatterplot2"  class="column" style="width:70%; height:600"></div>
+            <div style="padding-left: 20px; width:30%" class="column">
+                <p class="bodytext"><strong> Adjecent Interactive Scatterplot investigates the relationships between Happiness  GDP, Life Expectancy, Country, Region, and Year.</strong></p>
+                <p class="bodytext">By using the filters and sliders at the bottom of the scatterplot, you can filter view the data.</p>
+                <p class="bodytext">Give it a try!</p>
+            </div>
+        </div>
+        <h3 class="collection-title" style="color: #092215; padding-top: 50px; padding-left: 45%;text-align:center;">Key Insights</h3>
+        <div class="column-list">
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>As GDP has continued to rise in the last 15 years, countries globally have experienced an increase in life expectancy. This relationship is significant; GDP and Life Expectancy are strongly correlated.</strong></p></div>
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Low and Middle Income Countries with high economic growth rates have experienced the largest increases in life expectancy. Over the last 15 years, Sub-Saharan African countries have experienced increases in life expectancy of around 10 years!</strong></p></div>
+          <div class="column; annotation" style="width:26%; text-align: center;"><p class="annotation"><strong>Low and Middle Income Countries with high economic growth rates have experienced the largest increases in life expectancy. Over the last 15 years, Sub-Saharan African countries have experienced increases in life expectancy of around 10 years!</strong></p></div>
+        </div>
+
+        <hr >
+
+        <h3 class="collection-title" style="color: #092215; padding-left: 20px;">Conclusion</h3>
+        <div class="column-list"> 
+          <p class="bodytext; column" style="width: 50%; text-align: center; font-family: 'Century Gothic'; font-size: 18px;">Based on the World Happiness Report 2021, the effects of COVID this year have significantly affected the happiness scores of countries globallyAs GDP has continued to rise in the last 15 years, countries globally have experienced an increase in life expectancy. This relationship is significant; GDP and Life Expectancy are strongly correlated. </p>
+          <p class="bodytext; column" style="width: 50%; text-align: center; font-family: 'Century Gothic'; font-size: 18px;">The long term historical trend is extremely positive and promising. Happiness, Life Expectancy, GDP, and other co-factors continue to rise all over the globe. Looking to the future, we can expect the world to be an increasingly positive and happy place for humanity to flourish in.</p>
+        </div>
+
+    <script type="text/javascript">
+        var specVis1 = "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/Chloropleth_Happiness.json";
+        var specVis2 = "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/Scatterplot_HappinessVSLifeExpectancy.json";
+        var specVis3 = "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/Chloropleth_GDP.json";
+        var specVis4 = "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/Scatterplot_GDP_vs_LifeExpectancy.json";
+        
       
-    </div>
-    <!-- end pure grid group -->
+        vegaEmbed('#vis1', specVis1, {"actions": false});
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <div class="description description-left">
-          <h2>This is the third section</h2>
-          <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
-        </div>
-      </div>
-      <div class="pure-u-2-3">
-        <div id="vis3"  class="vis-container"></div>
-      </div>
+        vegaEmbed('#scatterplot1', specVis2, {"actions": false});
+
+        vegaEmbed('#vis2', specVis3, {"actions": false});
+
+        vegaEmbed('#scatterplot2', specVis4, {"actions": false});
+
+      </script>
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
     
-    </div>
-    <!-- end pure grid group -->
-  
-    <div class="pure-g">
-      <div class="pure-u-1-1 small-font">
-        <p>This visualisation is created by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>. The datasource is <a href="#"" target="_blank">some data repository online</href>.</p>
-      </div>
-    </div>
-  
-
-  </div> <!-- end page -->
-   
-<script type="text/javascript">
-  var specVis1 = "https://raw.githubusercontent.com/tcor0005/FIT3179Assignment2/main/Chloropleth_Happiness.json";
-  var specVis2= "https://raw.githubusercontent.com/tcor0005/FIT3179Assignment2/main/Chloropleth_GDP.json";
-  var specVis3= "https://raw.githubusercontent.com/tcor0005/FIT3179Assignment2/main/Chloropleth_GDP.json";
-
-  vegaEmbed('#vis1', specVis1, {"actions": false});
-  
-  vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-
-  vegaEmbed('#vis3', specVis2, {"actions": false}).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
 </body>
+
 </html>
