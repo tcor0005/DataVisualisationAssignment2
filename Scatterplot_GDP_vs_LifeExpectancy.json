@@ -1,23 +1,92 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "A scatterplot showing body mass and flipper lengths of penguins.",
-    "data": {
-      "url": "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/world-happiness-report-2021.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text":"GDP VS Life Expectancy",
+  "fontSize":15},
+  "width": "container",
+  "height": "container",
+  "description": "A scatterplot showing Gross Domestic Product versus Life Expectancy for countries globally",
+  "data": {
+    "url": "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/world-happiness-report-2005-2021.csv"
+  },
+  "params": [
+      {
+          "name": "Year",
+          "value": 2021,
+          "bind": {
+              "input": "range",
+              "min": 2006,
+              "max": 2021,
+              "step": 1,
+              "name": "Year: "
+          }
+      },
+      {
+          "name": "Region",
+          "bind": {
+              "input": "select",
+              "options": [
+                  null,
+                  "Commonwealth of Independent States",
+                  "East Asia",
+                  "Europe",
+                  "Latin America and Caribbean",
+                  "Middle East and North Africa",
+                  "North America and ANZ",
+                  "South Asia",
+                  "Southeast Asia",
+                  "Sub-Saharan Africa"
+              ],
+              "labels": [
+                  "Show All",
+                  "Commonwealth of Independent States",
+                  "East Asia",
+                  "Europe",
+                  "Latin America and Caribbean",
+                  "Middle East and North Africa",
+                  "North America and ANZ",
+                  "South Asia",
+                  "Southeast Asia",
+                  "Sub-Saharan Africa"
+              ],
+              "name": "Region: "
+          }
+      }
+  ],
+  "transform": [
+      { "filter": "datum.Year == Year" },
+      {
+          "filter": "Region == null || datum.Regional_Indicator == Region"},
+      { "filter": "datum['Healthy life expectancy at birth'] != 0" },
+      { "filter": "datum['Log GDP per capita'] != 0" }
+  ],
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Log GDP per capita",
+      "type": "quantitative",
+       "scale": { "type": "linear", "domain": [6,12]}
     },
-    "mark": "circle",
-    "encoding": {
-      "x": {
-        "field": "Healthy life expectancy",
-        "type": "quantitative",
-        "scale": {"zero": false}
-      },
-      "y": {
-        "field": "Logged GDP per capita",
-        "type": "quantitative",
-        "scale": {"zero": false}
-      },
-      "color": {"field": "Regional indicator", "type": "nominal"},
-      "size": {"field": "Ladder score", "type": "quantitative"}
-    }
+    "y": {
+      "field": "Healthy life expectancy at birth",
+      "type": "quantitative",
+      "scale": { "type": "linear", "domain": [45,80]}
+    },
+    "color": {"field": "Regional_Indicator", "type": "nominal", "title": "Geographic Region"},
+    "size": {"field": "Life Ladder", 
+      "type": "quantitative", 
+      "title": "Score",
+      "scale": {
+        "type": "threshold",
+        "domain": [2,3,4,5,6,7,8],
+        "range": [10,40,70,100,130,160,190,220]
+        }
+    },
+    "tooltip": [
+      {"field": "Country_name", "type": "nominal", "title": "Country"},
+      {"field": "Regional_Indicator", "type": "nominal", "title": "Geographic Region"},
+      {"field": "Healthy life expectancy at birth", "type": "quantitative", "title": "Healthy life expectancy at birth"},
+      {"field": "Log GDP per capita", "type": "quantitative", "title": "Log GDP per capita"},
+      {"field": "Life Ladder", "type": "quantitative", "title": "Happiness Scale"}
+      ]
   }
-  
+}
