@@ -1,0 +1,105 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {"text":"Happiness VS Life Expectancy",
+    "fontSize":15},
+    "width": "container",
+    "height": "container",
+    "description": "A scatterplot showing Gross Domestic Product versus Life Expectancy for countries globally",
+    "data": {
+      "url": "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/world-happiness-report-2005-2021.csv"
+    },
+    "params": [
+        {
+            "name": "LogGDPScore",
+            "value": 6,
+            "bind": {
+                "input": "range",
+                "min": 6,
+                "max": 11,
+                "step": 1,
+                "name": "Min GDP Score: "
+            }
+        },
+        {
+            "name": "Year",
+            "value": 2021,
+            "bind": {
+                "input": "range",
+                "min": 2006,
+                "max": 2021,
+                "step": 1,
+                "name": "Year: "
+            }
+        },
+        {
+            "name": "Region",
+            "bind": {
+                "input": "select",
+                "options": [
+                    null,
+                    "Commonwealth of Independent States",
+                    "East Asia",
+                    "Europe",
+                    "Latin America and Caribbean",
+                    "Middle East and North Africa",
+                    "North America and ANZ",
+                    "South Asia",
+                    "Southeast Asia",
+                    "Sub-Saharan Africa"
+                ],
+                "labels": [
+                    "Show All",
+                    "Commonwealth of Independent States",
+                    "East Asia",
+                    "Europe",
+                    "Latin America and Caribbean",
+                    "Middle East and North Africa",
+                    "North America and ANZ",
+                    "South Asia",
+                    "Southeast Asia",
+                    "Sub-Saharan Africa"
+                ],
+                "name": "Region: "
+            }
+        }
+    ],
+    "transform": [
+        {"filter" : "datum['Log GDP per capita'] >= LogGDPScore"},
+        { "filter": "datum.Year == Year" },
+        {"filter": "Region == null || datum.Regional_Indicator == Region"},
+        { "filter": "datum['Healthy life expectancy at birth'] != 0" },
+        { "filter": "datum['Life ladder'] != 0" },
+        { "filter": "datum['Log GDP per capita'] != 0" }
+    ],
+    "mark": "circle",
+    "encoding": {
+      "x": {
+        "field": "Life Ladder",
+        "type": "quantitative",
+         "scale": { "type": "linear", "domain": [2,8]}
+      },
+      "y": {
+        "field": "Healthy life expectancy at birth",
+        "type": "quantitative",
+        "scale": { "type": "linear", "domain": [40,80]}
+      },
+      "color": {"field": "Regional_Indicator", "type": "nominal", "title": "Geographic Region"},
+      "size": {"field": "Log GDP per capita", 
+        "type": "quantitative", 
+        "title": "Logged GDP Score",
+        "scale": {
+          "type": "threshold",
+          "domain": [6,7,8,9,10,11],
+          "range": [40,70,100,130,160,190]
+          }
+      },
+      
+      "tooltip": [
+        {"field": "Country_name", "type": "nominal", "title": "Country"},
+        {"field": "Regional_Indicator", "type": "nominal", "title": "Geographic Region"},
+        {"field": "Healthy life expectancy at birth", "type": "quantitative", "title": "Healthy life expectancy at birth"},
+        {"field": "Log GDP per capita", "type": "quantitative", "title": "Log GDP per capita"},
+        {"field": "Life Ladder", "type": "quantitative", "title": "Happiness Scale"}
+        ]
+    }
+  }
