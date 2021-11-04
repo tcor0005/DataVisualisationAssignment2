@@ -8,7 +8,7 @@
     "url": "https://raw.githubusercontent.com/tcor0005/DataVisualisationAssignment2/main/global.topojson",
     "format": {"type": "topojson", "feature": "global.geo"}
   },
-  "projection": {"type": "equalEarth"},
+  "projection": {"type": "equirectangular"},
   "layer": [
     {
       "transform": [
@@ -42,8 +42,7 @@
           "scale": {
             "type": "threshold",
             "domain": [8,9,10,11],
-            "range":["#FFCC33","#FF6600","#A45209",  "#a63603","#533419"]
-
+            "scheme" : "goldgreen"
           }
         },
         "tooltip": [
